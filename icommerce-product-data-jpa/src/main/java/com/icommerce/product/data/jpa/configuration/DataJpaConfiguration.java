@@ -9,17 +9,16 @@ import com.icommerce.product.data.jpa.repository.ProductJpaRepository;
 import com.icommerce.product.data.jpa.repository.UserJpaRepository;
 import com.icommerce.product.domain.entity.Cart;
 import com.icommerce.product.domain.repository.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Configuration
-    @ComponentScan({"com.icommerce.product.data.jpa.mapper"})
-    @EnableMongoRepositories("com.icommerce.product.data.jpa.repository")
+@ComponentScan({"com.icommerce.product.data.jpa.mapper"})
+@EnableMongoRepositories("com.icommerce.product.data.jpa.repository")
+@Import({CloudDatabaseConfiguration.class})
 public class DataJpaConfiguration {
 
     @Bean

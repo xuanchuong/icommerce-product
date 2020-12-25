@@ -1,8 +1,10 @@
-package com.icommerce.product.bootstrap.configuration;
+package com.icommerce.product.data.jpa.configuration;
 
 import com.github.mongobee.Mongobee;
 import io.github.jhipster.config.JHipsterConstants;
-import io.github.jhipster.domain.util.JSR310DateConverters.*;
+import io.github.jhipster.domain.util.JSR310DateConverters.DateToZonedDateTimeConverter;
+import io.github.jhipster.domain.util.JSR310DateConverters.DurationToLongConverter;
+import io.github.jhipster.domain.util.JSR310DateConverters.ZonedDateTimeToDateConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.Cloud;
@@ -18,7 +20,6 @@ import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class CloudDatabaseConfiguration extends AbstractCloudConfig {
 
         if (matchingServiceInfos.size() != 1) {
             throw new CloudException("No unique service matching MongoDbFactory found. Expected 1, found "
-                + matchingServiceInfos.size());
+                    + matchingServiceInfos.size());
         }
         MongoServiceInfo info = (MongoServiceInfo) matchingServiceInfos.get(0);
         Mongobee mongobee = new Mongobee(info.getUri());
