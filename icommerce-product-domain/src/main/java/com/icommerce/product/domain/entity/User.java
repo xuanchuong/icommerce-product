@@ -2,6 +2,7 @@ package com.icommerce.product.domain.entity;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Getter
 @Builder
 @FieldDefaults(makeFinal = true)
+@ToString
 public class User {
 
     private static final long serialVersionUID = 1L;
@@ -59,19 +61,5 @@ public class User {
     @Override
     public int hashCode() {
         return 31;
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "User{" +
-            "login='" + login + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", imageUrl='" + imageUrl + '\'' +
-            ", activated='" + activated + '\'' +
-            ", langKey='" + langKey + '\'' +
-            "}";
     }
 }

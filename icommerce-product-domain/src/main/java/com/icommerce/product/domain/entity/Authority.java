@@ -1,14 +1,13 @@
 package com.icommerce.product.domain.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
 @Setter
+@ToString
 public class Authority implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,13 +29,5 @@ public class Authority implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(name);
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "Authority{" +
-            "name='" + name + '\'' +
-            "}";
     }
 }

@@ -1,33 +1,14 @@
 package com.icommerce.product.domain.entity;
 
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 
-public class CartDetail implements Serializable {
+@Getter
+@Setter
+@ToString
+public class CartDetail {
     private Integer pricePerUnit;
     private Integer quantity;
-
-    public Integer getPricePerUnit() {
-        return pricePerUnit;
-    }
-
-    public void setPricePerUnit(Integer pricePerUnit) {
-        this.pricePerUnit = pricePerUnit;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    @Override
-    public String toString() {
-        return "CartDetail{" +
-            "pricePerUnit=" + pricePerUnit +
-            ", quantity=" + quantity +
-            '}';
-    }
 }
