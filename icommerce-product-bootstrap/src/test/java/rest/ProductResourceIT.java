@@ -50,20 +50,13 @@ public class ProductResourceIT {
 
     private Product product;
 
-    /**
-     * Create an entity for this test.
-     *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
-     */
     public static Product createEntity() {
-        Product product = Product.builder()
-            .title(DEFAULT_TITLE)
-            .price(DEFAULT_PRICE)
-            .brand(DEFAULT_BRAND)
-            .image(DEFAULT_IMAGE)
-            .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE).build();
-        return product;
+        return Product.builder()
+                .title(DEFAULT_TITLE)
+                .price(DEFAULT_PRICE)
+                .brand(DEFAULT_BRAND)
+                .image(DEFAULT_IMAGE)
+                .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE).build();
     }
 
     @BeforeEach
@@ -108,7 +101,6 @@ public class ProductResourceIT {
         List<Product> productList = productRepository.findAll();
         assertThat(productList).hasSize(databaseSizeBeforeCreate);
     }
-
 
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
@@ -174,11 +166,11 @@ public class ProductResourceIT {
 
         // Get the product
         restProductMockMvc.perform(get("/api/products/{id}", product.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(product.getId()))
-            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.id").value(product.getId()))
+                .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
+                .andExpect(jsonPath("$.price").value(DEFAULT_PRICE))
             .andExpect(jsonPath("$.brand").value(DEFAULT_BRAND))
             .andExpect(jsonPath("$.imageContentType").value(DEFAULT_IMAGE_CONTENT_TYPE))
             .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)));

@@ -47,21 +47,14 @@ public class OrderResourceIT {
 
     private Order order;
 
-    /**
-     * Create an entity for this test.
-     * <p>
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
-     */
     public static Order createEntity() {
-        Order order = Order.builder()
+        return Order.builder()
                 .paymentType(DEFAULT_PAYMENT_TYPE)
                 .deliveryDate(DEFAULT_CREATED_DATE.plusDays(5))
                 .cart(new Cart())
                 .createdBy("user")
                 .createdDate(DEFAULT_CREATED_DATE)
                 .build();
-        return order;
     }
 
     @BeforeEach
