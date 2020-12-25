@@ -1,16 +1,13 @@
 package com.icommerce.product.application.dto;
 
-import com.icommerce.product.application.dto.ProductSearchCriteria;
-import com.icommerce.product.application.dto.SearchCriteria;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 public class BrandSearching extends ProductSearchCriteria {
 
     @Override
     public boolean shouldUsethisCriteria(SearchCriteria searchCriteria) {
-        return StringUtils.isNotBlank(searchCriteria.getBrand());
+        return !StringUtils.isEmpty(searchCriteria.getBrand());
     }
 
     @Override
