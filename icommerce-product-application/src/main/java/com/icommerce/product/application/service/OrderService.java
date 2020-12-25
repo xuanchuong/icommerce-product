@@ -27,10 +27,11 @@ public class OrderService {
     private final CartRepository cartRepository;
 
     private final UserActivitiesHistoricalEventPublisher userActivitiesHistoricalEventPublisher;
+    private final UserService userService;
     
     @Transactional
     public Order makeAnOrder() {
-        String currentUser = UserService.getCurrentUserLogin().orElse("system");
+        String currentUser = userService.getCurrentUserLogin().orElse("system");
         Cart cart = cartRepository.getCart(currentUser);
         if (CollectionUtils.isEmpty(cart.getSelectedProducts())) {
             throw new RuntimeException("Your cart is empty, you are not allow to make an order");
@@ -45,7 +46,7 @@ public class OrderService {
         cartRepository.clearCart(currentUser);
         UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                 .actionDate(LocalDateTime.now())
-                .userId(UserService.getCurrentUserLogin().orElse(""))
+                .userId(userService.getCurrentUserLogin().orElse(""))
                 .actionId(ActionId.CHECKOUT_ORDER.name())
                 .actionDescription(String.format("User %s view order detail %s", currentUser, order))
                 .build();
@@ -61,9 +62,9 @@ public class OrderService {
         } finally {
             UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                     .actionDate(LocalDateTime.now())
-                    .userId(UserService.getCurrentUserLogin().orElse(""))
+                    .userId(userService.getCurrentUserLogin().orElse(""))
                     .actionId(ActionId.GET_ORDER.name())
-                    .actionDescription(String.format("User %s view order detail %s", UserService.getCurrentUserLogin().orElse("system"), id))
+                    .actionDescription(String.format("User %s view order detail %s", userService.getCurrentUserLogin().orElse("system"), id))
                     .build();
             userActivitiesHistoricalEventPublisher.publish(userActivitiesHistoricalEvent);
         }
@@ -77,9 +78,9 @@ public class OrderService {
         } finally {
             UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                     .actionDate(LocalDateTime.now())
-                    .userId(UserService.getCurrentUserLogin().orElse(""))
+                    .userId(userService.getCurrentUserLogin().orElse(""))
                     .actionId(ActionId.GET_ALL_ORDERS.name())
-                    .actionDescription(String.format("User %s view list order, %s", UserService.getCurrentUserLogin().orElse("system"), pageable))
+                    .actionDescription(String.format("User %s view list order, %s", userService.getCurrentUserLogin().orElse("system"), pageable))
                     .build();
             userActivitiesHistoricalEventPublisher.publish(userActivitiesHistoricalEvent);
         }

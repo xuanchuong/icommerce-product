@@ -32,6 +32,7 @@ public class ProductService {
     private final MongoTemplate mongoTemplate;
     private final UserActivitiesHistoricalEventPublisher userActivitiesHistoricalEventPublisher;
     private final ProductChangelogHistoricalEventPublisher productChangelogHistoricalEventPublisher;
+    private final UserService userService;
 
     @Transactional
     @PreAuthorize("hasAuthority(\"" + Role.ADMIN + "\")")
@@ -42,7 +43,7 @@ public class ProductService {
             .price(productDTO.getPrice())
             .build();
         product = productRepository.save(product);
-        String userId = UserService.getCurrentUserLogin().orElse("");
+        String userId = userService.getCurrentUserLogin().orElse("");
         ProductChangelogHistoricalEvent productChangelogHistoricalEvent = ProductChangelogHistoricalEvent.build(
                 product, userId
         );
@@ -62,7 +63,7 @@ public class ProductService {
         try {
             Product existing = productRepository.findById(productDTO.getId())
                     .orElseThrow(() -> new RuntimeException("Could not found product with id " + productDTO.getId()));
-            String userId = UserService.getCurrentUserLogin().orElse("");
+            String userId = userService.getCurrentUserLogin().orElse("");
             ProductChangelogHistoricalEvent productChangelogHistoricalEvent = ProductChangelogHistoricalEvent.build(
                     existing, userId
             );
@@ -77,7 +78,7 @@ public class ProductService {
         } finally {
             UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                     .actionDate(LocalDateTime.now())
-                    .userId(UserService.getCurrentUserLogin().orElse(""))
+                    .userId(userService.getCurrentUserLogin().orElse(""))
                     .actionId(ActionId.UPDATE_PRODUCT.name())
                     .actionDescription(productDTO.toString()).build();
             userActivitiesHistoricalEventPublisher.publish(userActivitiesHistoricalEvent);
@@ -92,7 +93,7 @@ public class ProductService {
         } finally {
             UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                     .actionDate(LocalDateTime.now())
-                    .userId(UserService.getCurrentUserLogin().orElse(""))
+                    .userId(userService.getCurrentUserLogin().orElse(""))
                     .actionId(ActionId.DELETE_PRODUCT.name())
                     .actionDescription("id=" + id).build();
             userActivitiesHistoricalEventPublisher.publish(userActivitiesHistoricalEvent);
@@ -106,7 +107,7 @@ public class ProductService {
         } finally {
             UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                     .actionDate(LocalDateTime.now())
-                    .userId(UserService.getCurrentUserLogin().orElse(""))
+                    .userId(userService.getCurrentUserLogin().orElse(""))
                     .actionId(ActionId.GET_PRODUCT.name())
                     .actionDescription("id=" + id).build();
             userActivitiesHistoricalEventPublisher.publish(userActivitiesHistoricalEvent);
@@ -131,7 +132,7 @@ public class ProductService {
         } finally {
             UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                     .actionDate(LocalDateTime.now())
-                    .userId(UserService.getCurrentUserLogin().orElse(""))
+                    .userId(userService.getCurrentUserLogin().orElse(""))
                     .actionId(ActionId.SEARCH_PRODUCTS.name())
                     .actionDescription(searchCriteria == null ?
                             "" : searchCriteria.toString()).build();

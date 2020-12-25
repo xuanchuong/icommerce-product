@@ -1,5 +1,7 @@
 package com.icommerce.product.bootstrap.configuration;
 
+import com.icommerce.product.application.service.UserService;
+import com.icommerce.product.bootstrap.security.UserServiceAdapter;
 import com.icommerce.product.bootstrap.security.oauth2.AudienceValidator;
 import com.icommerce.product.bootstrap.security.oauth2.JwtGrantedAuthorityConverter;
 import com.icommerce.product.domain.vo.Role;
@@ -35,6 +37,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public SecurityConfiguration(JHipsterProperties jHipsterProperties, SecurityProblemSupport problemSupport) {
         this.problemSupport = problemSupport;
         this.jHipsterProperties = jHipsterProperties;
+    }
+
+    @Bean
+    public UserService userServiceAdapter() {
+        return new UserServiceAdapter();
     }
 
     @Override

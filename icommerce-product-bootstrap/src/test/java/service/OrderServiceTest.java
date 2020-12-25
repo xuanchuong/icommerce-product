@@ -1,14 +1,12 @@
 package service;
 
-import com.icommerce.product.domain.entity.ActionId;
-import com.icommerce.product.domain.entity.Cart;
-import com.icommerce.product.domain.entity.CartDetail;
-import com.icommerce.product.domain.entity.Order;
+import com.icommerce.product.application.service.OrderService;
+import com.icommerce.product.application.service.UserService;
+import com.icommerce.product.domain.entity.*;
 import com.icommerce.product.domain.event.UserActivitiesHistoricalEvent;
 import com.icommerce.product.domain.event.UserActivitiesHistoricalEventPublisher;
 import com.icommerce.product.domain.repository.CartRepository;
 import com.icommerce.product.domain.repository.OrderRepository;
-import com.icommerce.product.application.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -41,6 +39,9 @@ public class OrderServiceTest {
 
     @InjectMocks
     OrderService orderService;
+
+    @Mock
+    UserService userService;
 
     @Test
     public void makeAnOrder_should_work_correctly() {

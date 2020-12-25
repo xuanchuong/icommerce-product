@@ -1,6 +1,6 @@
 package security;
 
-import com.icommerce.product.application.service.UserService;
+import com.icommerce.product.bootstrap.security.UserServiceAdapter;
 import com.icommerce.product.domain.vo.Role;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,14 +19,16 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.oauth2.core.oidc.endpoint.OidcParameterNames.ID_TOKEN;
 
-public class UserServiceUnitTest {
+public class UserServiceAdapterUnitTest {
+
+    UserServiceAdapter userServiceAdapter = new UserServiceAdapter();
 
     @Test
     public void testGetCurrentUserLogin() {
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
         securityContext.setAuthentication(new UsernamePasswordAuthenticationToken("admin", "admin"));
         SecurityContextHolder.setContext(securityContext);
-        Optional<String> login = UserService.getCurrentUserLogin();
+        Optional<String> login = userServiceAdapter.getCurrentUserLogin();
         assertThat(login).contains("admin");
     }
 
@@ -46,7 +48,7 @@ public class UserServiceUnitTest {
         securityContext.setAuthentication(bla);
         SecurityContextHolder.setContext(securityContext);
 
-        Optional<String> login = UserService.getCurrentUserLogin();
+        Optional<String> login = userServiceAdapter.getCurrentUserLogin();
 
         assertThat(login).contains("admin");
     }
@@ -56,7 +58,7 @@ public class UserServiceUnitTest {
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
         securityContext.setAuthentication(new UsernamePasswordAuthenticationToken("admin", "admin"));
         SecurityContextHolder.setContext(securityContext);
-        boolean isAuthenticated = UserService.isAuthenticated();
+        boolean isAuthenticated = userServiceAdapter.isAuthenticated();
         assertThat(isAuthenticated).isTrue();
     }
 
@@ -67,7 +69,7 @@ public class UserServiceUnitTest {
         authorities.add(new SimpleGrantedAuthority(Role.ANONYMOUS));
         securityContext.setAuthentication(new UsernamePasswordAuthenticationToken("anonymous", "anonymous", authorities));
         SecurityContextHolder.setContext(securityContext);
-        boolean isAuthenticated = UserService.isAuthenticated();
+        boolean isAuthenticated = userServiceAdapter.isAuthenticated();
         assertThat(isAuthenticated).isFalse();
     }
 
@@ -79,8 +81,8 @@ public class UserServiceUnitTest {
         securityContext.setAuthentication(new UsernamePasswordAuthenticationToken("user", "user", authorities));
         SecurityContextHolder.setContext(securityContext);
 
-        assertThat(UserService.isCurrentUserInRole(Role.USER)).isTrue();
-        assertThat(UserService.isCurrentUserInRole(Role.ADMIN)).isFalse();
+        assertThat(userServiceAdapter.isCurrentUserInRole(Role.USER)).isTrue();
+        assertThat(userServiceAdapter.isCurrentUserInRole(Role.ADMIN)).isFalse();
     }
 
 }

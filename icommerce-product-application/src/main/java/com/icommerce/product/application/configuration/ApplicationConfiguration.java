@@ -1,9 +1,7 @@
 package com.icommerce.product.application.configuration;
 
 import com.icommerce.product.application.dto.*;
-import com.icommerce.product.application.service.CartService;
-import com.icommerce.product.application.service.OrderService;
-import com.icommerce.product.application.service.ProductService;
+import com.icommerce.product.application.service.*;
 import com.icommerce.product.domain.event.ProductChangelogHistoricalEventPublisher;
 import com.icommerce.product.domain.event.UserActivitiesHistoricalEventPublisher;
 import com.icommerce.product.domain.repository.CartRepository;
@@ -22,9 +20,10 @@ public class ApplicationConfiguration {
     public ProductService productService(ProductRepository productRepository, List<ProductSearchCriteria> searchCriteria,
                                          MongoTemplate mongoTemplate,
                                          UserActivitiesHistoricalEventPublisher userActivitiesHistoricalEventPublisher,
-                                         ProductChangelogHistoricalEventPublisher productChangelogHistoricalEventPublisher) {
+                                         ProductChangelogHistoricalEventPublisher productChangelogHistoricalEventPublisher,
+                                         UserService userService) {
         return new ProductService(productRepository, searchCriteria, mongoTemplate, userActivitiesHistoricalEventPublisher,
-                productChangelogHistoricalEventPublisher);
+                productChangelogHistoricalEventPublisher, userService);
     }
 
     @Bean
@@ -35,8 +34,9 @@ public class ApplicationConfiguration {
 
     @Bean
     public OrderService orderService(OrderRepository orderRepository, CartRepository cartRepository,
-                                     UserActivitiesHistoricalEventPublisher userActivitiesHistoricalEventPublisher) {
-        return new OrderService(orderRepository, cartRepository, userActivitiesHistoricalEventPublisher);
+                                     UserActivitiesHistoricalEventPublisher userActivitiesHistoricalEventPublisher,
+                                     UserService userService) {
+        return new OrderService(orderRepository, cartRepository, userActivitiesHistoricalEventPublisher, userService);
     }
 
     @Bean
@@ -52,4 +52,6 @@ public class ApplicationConfiguration {
     public ProductSearchCriteria priceSearching() {
         return new PriceSearching();
     }
+
+
 }

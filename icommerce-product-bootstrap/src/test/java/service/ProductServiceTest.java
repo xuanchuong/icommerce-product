@@ -4,6 +4,7 @@ import com.icommerce.product.application.dto.ProductDTO;
 import com.icommerce.product.application.dto.ProductSearchCriteria;
 import com.icommerce.product.application.dto.SearchCriteria;
 import com.icommerce.product.application.service.ProductService;
+import com.icommerce.product.application.service.UserService;
 import com.icommerce.product.domain.entity.Product;
 import com.icommerce.product.domain.event.*;
 import com.icommerce.product.domain.repository.ProductRepository;
@@ -34,6 +35,9 @@ public class ProductServiceTest {
 
     @Mock
     List<ProductSearchCriteria> criteriaList;
+
+    @Mock
+    UserService userService;
 
     @Mock
     MongoTemplate mongoTemplate;
