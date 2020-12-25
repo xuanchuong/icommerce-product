@@ -1,6 +1,6 @@
-package com.icommerce.product.application.vo;
+package com.icommerce.product.domain.vo;
 
-public final class AuthoritiesConstants {
+public final class Role {
 
     public static final String ADMIN = "ROLE_ADMIN";
 
@@ -8,6 +8,6 @@ public final class AuthoritiesConstants {
 
     public static final String ANONYMOUS = "ROLE_ANONYMOUS";
 
-    private AuthoritiesConstants() {
+    private Role() {
     }
 }

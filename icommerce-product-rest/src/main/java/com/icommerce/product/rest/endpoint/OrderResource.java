@@ -1,8 +1,8 @@
 package com.icommerce.product.rest.endpoint;
 
-import com.icommerce.product.domain.entity.Order;
-import com.icommerce.product.application.vo.AuthoritiesConstants;
 import com.icommerce.product.application.service.OrderService;
+import com.icommerce.product.domain.entity.Order;
+import com.icommerce.product.domain.vo.Role;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -38,11 +38,6 @@ public class OrderResource {
         this.orderService = orderService;
     }
 
-    /**
-     * Make an order when user want to purchase their cart
-     *
-     * @return
-     */
     @PostMapping("/orders")
     public ResponseEntity<Order> makeOrder() throws URISyntaxException {
         Order result = orderService.makeAnOrder();
@@ -57,7 +52,7 @@ public class OrderResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of orders in body.
      */
     @GetMapping("/orders")
-    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+    @PreAuthorize("hasAuthority(\"" + Role.ADMIN + "\")")
     public List<Order> getAllOrders(Pageable pageable) {
         log.debug("REST request to get all Orders");
         return orderService.findAll(pageable).getContent();

@@ -1,6 +1,5 @@
 package com.icommerce.product.application.service;
 
-import com.icommerce.product.application.vo.AuthoritiesConstants;
 import com.icommerce.product.domain.entity.ActionId;
 import com.icommerce.product.domain.entity.Cart;
 import com.icommerce.product.domain.entity.Order;
@@ -8,6 +7,7 @@ import com.icommerce.product.domain.event.UserActivitiesHistoricalEvent;
 import com.icommerce.product.domain.event.UserActivitiesHistoricalEventPublisher;
 import com.icommerce.product.domain.repository.CartRepository;
 import com.icommerce.product.domain.repository.OrderRepository;
+import com.icommerce.product.domain.vo.Role;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -69,7 +69,7 @@ public class OrderService {
         }
     }
 
-    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+    @PreAuthorize("hasAuthority(\"" + Role.ADMIN + "\")")
     @Transactional(readOnly = true)
     public Page<Order> findAll(Pageable pageable) {
         try {

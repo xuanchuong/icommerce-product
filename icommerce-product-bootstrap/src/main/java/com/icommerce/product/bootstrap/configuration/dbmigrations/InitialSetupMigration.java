@@ -3,11 +3,8 @@ package com.icommerce.product.bootstrap.configuration.dbmigrations;
 import com.github.mongobee.changeset.ChangeLog;
 import com.github.mongobee.changeset.ChangeSet;
 import com.icommerce.product.data.jpa.entity.ProductJpa;
-import com.icommerce.product.domain.entity.Product;
-import com.icommerce.product.application.vo.AuthoritiesConstants;
 import com.icommerce.product.domain.entity.Authority;
-import com.icommerce.product.domain.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.icommerce.product.domain.vo.Role;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.util.Random;
@@ -21,9 +18,9 @@ public class InitialSetupMigration {
     @ChangeSet(order = "01", author = "initiator", id = "01-addAuthorities")
     public void addAuthorities(MongoTemplate mongoTemplate) {
         Authority adminAuthority = new Authority();
-        adminAuthority.setName(AuthoritiesConstants.ADMIN);
+        adminAuthority.setName(Role.ADMIN);
         Authority userAuthority = new Authority();
-        userAuthority.setName(AuthoritiesConstants.USER);
+        userAuthority.setName(Role.USER);
         mongoTemplate.save(adminAuthority);
         mongoTemplate.save(userAuthority);
     }

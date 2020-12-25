@@ -3,11 +3,11 @@ package com.icommerce.product.application.service;
 import com.icommerce.product.application.dto.ProductDTO;
 import com.icommerce.product.application.dto.ProductSearchCriteria;
 import com.icommerce.product.application.dto.SearchCriteria;
-import com.icommerce.product.application.vo.AuthoritiesConstants;
 import com.icommerce.product.domain.entity.ActionId;
 import com.icommerce.product.domain.entity.Product;
 import com.icommerce.product.domain.event.*;
 import com.icommerce.product.domain.repository.ProductRepository;
+import com.icommerce.product.domain.vo.Role;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -19,7 +19,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +34,7 @@ public class ProductService {
     private final ProductChangelogHistoricalEventPublisher productChangelogHistoricalEventPublisher;
 
     @Transactional
-    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+    @PreAuthorize("hasAuthority(\"" + Role.ADMIN + "\")")
     public Product save(ProductDTO productDTO) {
         Product product = Product.builder()
             .brand(productDTO.getBrand())
@@ -58,7 +57,7 @@ public class ProductService {
     }
 
     @Transactional
-    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+    @PreAuthorize("hasAuthority(\"" + Role.ADMIN + "\")")
     public Product update(ProductDTO productDTO) {
         try {
             Product existing = productRepository.findById(productDTO.getId())
@@ -86,7 +85,7 @@ public class ProductService {
     }
 
     @Transactional
-    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+    @PreAuthorize("hasAuthority(\"" + Role.ADMIN + "\")")
     public void deleteBy(String id) {
         try {
             productRepository.deleteById(id);
@@ -125,7 +124,7 @@ public class ProductService {
                 }
             });
             if (!CollectionUtils.isEmpty(criteriaCondition)) {
-                query.addCriteria(new Criteria().andOperator(criteriaCondition.toArray(new Criteria[criteriaCondition.size()])));
+                query.addCriteria(new Criteria().andOperator(criteriaCondition.toArray(new Criteria[0])));
             }
             query.with(pageable);
             return new PageImpl<>(mongoTemplate.find(query, Product.class));

@@ -1,6 +1,6 @@
 package com.icommerce.product.application.service;
 
-import com.icommerce.product.application.vo.AuthoritiesConstants;
+import com.icommerce.product.domain.vo.Role;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -60,7 +60,7 @@ public final class SecurityUtils {
     public static boolean isAuthenticated() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication != null &&
-            getAuthorities(authentication).noneMatch(AuthoritiesConstants.ANONYMOUS::equals);
+                getAuthorities(authentication).noneMatch(Role.ANONYMOUS::equals);
     }
 
     /**
