@@ -4,24 +4,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.icommerce.product.application.service.SecurityUtils;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
-import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
-import org.springframework.format.support.DefaultFormattingConversionService;
-import org.springframework.format.support.FormattingConversionService;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.oidc.OidcIdToken;
-import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
-import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
-import java.util.Collection;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Utility class for testing REST controllers.
@@ -38,13 +26,6 @@ public final class TestUtil {
         return mapper;
     }
 
-    /**
-     * Convert an object to JSON byte array.
-     *
-     * @param object the object to convert.
-     * @return the JSON byte array.
-     * @throws IOException
-     */
     public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
         return mapper.writeValueAsBytes(object);
     }
@@ -64,9 +45,6 @@ public final class TestUtil {
         return byteArray;
     }
 
-    /**
-     * A matcher that tests that the examined string represents the same instant as the reference datetime.
-     */
     public static class ZonedDateTimeMatcher extends TypeSafeDiagnosingMatcher<String> {
 
         private final ZonedDateTime date;
@@ -95,58 +73,6 @@ public final class TestUtil {
         public void describeTo(Description description) {
             description.appendText("a String representing the same Instant as ").appendValue(date);
         }
-    }
-
-    /**
-     * Creates a matcher that matches when the examined string represents the same instant as the reference datetime.
-     *
-     * @param date the reference datetime against which the examined string is checked.
-     */
-    public static ZonedDateTimeMatcher sameInstant(ZonedDateTime date) {
-        return new ZonedDateTimeMatcher(date);
-    }
-
-    /**
-     * Verifies the equals/hashcode contract on the domain object.
-     */
-    public static <T> void equalsVerifier(Class<T> clazz) throws Exception {
-        T domainObject1 = clazz.getConstructor().newInstance();
-        assertThat(domainObject1.toString()).isNotNull();
-        assertThat(domainObject1).isEqualTo(domainObject1);
-        assertThat(domainObject1.hashCode()).isEqualTo(domainObject1.hashCode());
-        // Test with an instance of another class
-        Object testOtherObject = new Object();
-        assertThat(domainObject1).isNotEqualTo(testOtherObject);
-        assertThat(domainObject1).isNotEqualTo(null);
-        // Test with an instance of the same class
-        T domainObject2 = clazz.getConstructor().newInstance();
-        assertThat(domainObject1).isNotEqualTo(domainObject2);
-        // HashCodes are equals because the objects are not persisted yet
-        assertThat(domainObject1.hashCode()).isEqualTo(domainObject2.hashCode());
-    }
-
-    /**
-     * Create a {@link FormattingConversionService} which use ISO date format, instead of the localized one.
-     * @return the {@link FormattingConversionService}.
-     */
-    public static FormattingConversionService createFormattingConversionService() {
-        DefaultFormattingConversionService dfcs = new DefaultFormattingConversionService ();
-        DateTimeFormatterRegistrar registrar = new DateTimeFormatterRegistrar();
-        registrar.setUseIsoFormat(true);
-        registrar.registerFormatters(dfcs);
-        return dfcs;
-    }
-
-    final static String ID_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9" +
-        ".eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsIm" +
-        "p0aSI6ImQzNWRmMTRkLTA5ZjYtNDhmZi04YTkzLTdjNmYwMzM5MzE1OSIsImlhdCI6MTU0M" +
-        "Tk3MTU4MywiZXhwIjoxNTQxOTc1MTgzfQ.QaQOarmV8xEUYV7yvWzX3cUE_4W1luMcWCwpr" +
-        "oqqUrg";
-
-    public static OAuth2AuthenticationToken authenticationToken(OidcIdToken idToken) {
-        Collection<GrantedAuthority> authorities = SecurityUtils.extractAuthorityFromClaims(idToken.getClaims());
-        OidcUser user = new DefaultOidcUser(authorities, idToken);
-        return new OAuth2AuthenticationToken(user, authorities, "oidc");
     }
 
     private TestUtil() {}

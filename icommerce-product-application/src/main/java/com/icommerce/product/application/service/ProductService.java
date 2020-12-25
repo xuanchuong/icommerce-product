@@ -42,7 +42,7 @@ public class ProductService {
             .price(productDTO.getPrice())
             .build();
         product = productRepository.save(product);
-        String userId = SecurityUtils.getCurrentUserLogin().orElse("");
+        String userId = UserService.getCurrentUserLogin().orElse("");
         ProductChangelogHistoricalEvent productChangelogHistoricalEvent = ProductChangelogHistoricalEvent.build(
                 product, userId
         );
@@ -61,23 +61,23 @@ public class ProductService {
     public Product update(ProductDTO productDTO) {
         try {
             Product existing = productRepository.findById(productDTO.getId())
-                .orElseThrow(() -> new RuntimeException("Could not found product with id " + productDTO.getId()));
-            String userId = SecurityUtils.getCurrentUserLogin().orElse("");
+                    .orElseThrow(() -> new RuntimeException("Could not found product with id " + productDTO.getId()));
+            String userId = UserService.getCurrentUserLogin().orElse("");
             ProductChangelogHistoricalEvent productChangelogHistoricalEvent = ProductChangelogHistoricalEvent.build(
                     existing, userId
             );
             productChangelogHistoricalEventPublisher.publish(productChangelogHistoricalEvent); // keep the old version of product
             existing = existing.toBuilder()
-                .brand(productDTO.getBrand())
-                .title(productDTO.getTitle())
-                .price(productDTO.getPrice())
-                .build();
+                    .brand(productDTO.getBrand())
+                    .title(productDTO.getTitle())
+                    .price(productDTO.getPrice())
+                    .build();
             existing = productRepository.update(existing);
             return existing;
         } finally {
             UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                     .actionDate(LocalDateTime.now())
-                    .userId(SecurityUtils.getCurrentUserLogin().orElse(""))
+                    .userId(UserService.getCurrentUserLogin().orElse(""))
                     .actionId(ActionId.UPDATE_PRODUCT.name())
                     .actionDescription(productDTO.toString()).build();
             userActivitiesHistoricalEventPublisher.publish(userActivitiesHistoricalEvent);
@@ -92,7 +92,7 @@ public class ProductService {
         } finally {
             UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                     .actionDate(LocalDateTime.now())
-                    .userId(SecurityUtils.getCurrentUserLogin().orElse(""))
+                    .userId(UserService.getCurrentUserLogin().orElse(""))
                     .actionId(ActionId.DELETE_PRODUCT.name())
                     .actionDescription("id=" + id).build();
             userActivitiesHistoricalEventPublisher.publish(userActivitiesHistoricalEvent);
@@ -106,7 +106,7 @@ public class ProductService {
         } finally {
             UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                     .actionDate(LocalDateTime.now())
-                    .userId(SecurityUtils.getCurrentUserLogin().orElse(""))
+                    .userId(UserService.getCurrentUserLogin().orElse(""))
                     .actionId(ActionId.GET_PRODUCT.name())
                     .actionDescription("id=" + id).build();
             userActivitiesHistoricalEventPublisher.publish(userActivitiesHistoricalEvent);
@@ -131,7 +131,7 @@ public class ProductService {
         } finally {
             UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                     .actionDate(LocalDateTime.now())
-                    .userId(SecurityUtils.getCurrentUserLogin().orElse(""))
+                    .userId(UserService.getCurrentUserLogin().orElse(""))
                     .actionId(ActionId.SEARCH_PRODUCTS.name())
                     .actionDescription(searchCriteria == null ?
                             "" : searchCriteria.toString()).build();

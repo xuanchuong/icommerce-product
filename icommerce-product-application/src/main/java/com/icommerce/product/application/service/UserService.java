@@ -14,13 +14,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * Utility class for Spring Security.
- */
-public final class SecurityUtils {
-
-    private SecurityUtils() {
-    }
+public class UserService {
 
     /**
      * Get the login of the current user.
