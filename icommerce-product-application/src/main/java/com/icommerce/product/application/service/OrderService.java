@@ -74,7 +74,7 @@ public class OrderService {
     @Transactional(readOnly = true)
     public Page<Order> findAll(Pageable pageable) {
         try {
-            return orderRepository.findAll(pageable);
+            return (Page<Order>) orderRepository.findAll();
         } finally {
             UserActivitiesHistoricalEvent userActivitiesHistoricalEvent = UserActivitiesHistoricalEvent.builder()
                     .actionDate(LocalDateTime.now())

@@ -27,7 +27,6 @@ public class OrderRepositoryAdapter implements OrderRepository {
         return orderJpaRepository.findById(id).map(orderJpaMapper::map);
     }
 
-    @Override
     public Page<Order> findAll(Pageable pageable) {
         return orderJpaRepository.findAll(pageable).map(orderJpaMapper::map);
     }

@@ -1,7 +1,5 @@
-package service;
+package com.icommerce.product.application.service;
 
-import com.icommerce.product.application.service.OrderService;
-import com.icommerce.product.application.service.UserService;
 import com.icommerce.product.domain.entity.*;
 import com.icommerce.product.domain.event.UserActivitiesHistoricalEvent;
 import com.icommerce.product.domain.event.UserActivitiesHistoricalEventPublisher;
@@ -47,7 +45,7 @@ public class OrderServiceTest {
         CartDetail cartDetail = new CartDetail();
         cartDetail.setQuantity(10);
         cartDetail.setPricePerUnit(1000);
-        Map<String, CartDetail> selectedProducts = new HashMap();
+        Map<String, CartDetail> selectedProducts = new HashMap<>();
         selectedProducts.put("123", cartDetail);
         Cart cart = new Cart();
         cart.setSelectedProducts(selectedProducts);
@@ -105,22 +103,4 @@ public class OrderServiceTest {
         verify(userActivitiesHistoricalEventPublisher).publish(eventArgumentCaptor.capture());
         assertThat(eventArgumentCaptor.getValue().getActionId()).isEqualTo(ActionId.GET_ORDER.toString());
     }
-
-    // TODO check this unit test
-//    @Test
-//    public void findAll_should_work_correctly() {
-//        // Given
-//        Page page = mock(Page.class);
-//        Pageable pageable = mock(Pageable.class);
-//        when(orderRepository.findAll()).thenReturn(page);
-//        doNothing().when(userActivitiesHistoricalEventPublisher).publish(any(UserActivitiesHistoricalEvent.class));
-//        ArgumentCaptor<UserActivitiesHistoricalEvent> eventArgumentCaptor = ArgumentCaptor.forClass(UserActivitiesHistoricalEvent.class);
-//        // When
-//        Page<Order> result = orderService.findAll(pageable);
-//        // Then
-//        assertThat(result).isSameAs(page);
-//        verify(orderRepository).findAll(pageable);
-//        verify(userActivitiesHistoricalEventPublisher).publish(eventArgumentCaptor.capture());
-//        assertThat(eventArgumentCaptor.getValue().getActionId()).isEqualTo(ActionId.GET_ALL_ORDERS.toString());
-//    }
 }

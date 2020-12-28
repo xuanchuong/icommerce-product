@@ -22,7 +22,6 @@ public class UserRepositoryAdapter implements UserRepository {
         return userJpaRepository.findOneByLogin(login).map(userJpaMapper::map);
     }
 
-    @Override
     public List<User> findAllByLoginNot(Pageable pageable, String login) {
         return userJpaRepository.findAllByLoginNot(pageable,login)
             .stream().map(userJpaMapper::map)
