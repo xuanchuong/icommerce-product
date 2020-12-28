@@ -44,9 +44,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new UserServiceAdapter();
     }
 
+    @Bean
+    public JwtGrantedAuthorityConverter jwtGrantedAuthorityConverter(UserService userService) {
+        return new JwtGrantedAuthorityConverter(userService);
+    }
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
         http
                 .csrf()
                 .disable()
@@ -77,16 +81,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .and()
             .oauth2ResourceServer()
                 .jwt()
-                .jwtAuthenticationConverter(authenticationConverter())
                 .and()
             .and()
                 .oauth2Client();
-        // @formatter:on
     }
 
-    Converter<Jwt, AbstractAuthenticationToken> authenticationConverter() {
+    @Bean
+    Converter<Jwt, AbstractAuthenticationToken> authenticationConverter(UserService userService) {
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
-        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new JwtGrantedAuthorityConverter());
+        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new JwtGrantedAuthorityConverter(userService));
         return jwtAuthenticationConverter;
     }
 
