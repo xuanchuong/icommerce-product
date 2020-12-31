@@ -1,5 +1,8 @@
 package com.icommerce.product.data.jpa.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,10 +11,10 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * An authority (a security role) used by Spring Security.
- */
+@Getter
+@Setter
 @Document(collection = "jhi_authority")
+@ToString
 public class Authority implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,14 +23,6 @@ public class Authority implements Serializable {
     @Size(max = 50)
     @Id
     private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -43,13 +38,5 @@ public class Authority implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(name);
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "Authority{" +
-            "name='" + name + '\'' +
-            "}";
     }
 }

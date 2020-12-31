@@ -1,6 +1,9 @@
 package com.icommerce.product.data.jpa.entity;
 
 import com.icommerce.product.domain.entity.Cart;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -9,10 +12,10 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-/**
- * A Order.
- */
 @Document(collection = "order")
+@Getter
+@Setter
+@ToString
 public class OrderJpa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,77 +42,4 @@ public class OrderJpa implements Serializable {
     @NotNull
     @Field("created_date")
     private LocalDate createdDate;
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPaymentType() {
-        return paymentType;
-    }
-
-    public OrderJpa paymentType(String paymentType) {
-        this.paymentType = paymentType;
-        return this;
-    }
-
-    public void setPaymentType(String paymentType) {
-        this.paymentType = paymentType;
-    }
-
-    public LocalDate getCreatedDate() {
-        return createdDate;
-    }
-
-    public OrderJpa createdDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
-        return this;
-    }
-
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
-
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-            "id='" + id + '\'' +
-            ", paymentType='" + paymentType + '\'' +
-            ", createdBy='" + createdBy + '\'' +
-            ", cart=" + cart +
-            ", deliveryDate=" + deliveryDate +
-            ", createdDate=" + createdDate +
-            '}';
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
-
-    public LocalDate getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(LocalDate deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
 }

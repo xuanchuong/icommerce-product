@@ -29,9 +29,9 @@ public class InitialSetupMigration {
     public void addSampleProducts(MongoTemplate mongoTemplate) {
         for (int i = 1; i <= 100; i++) {
             ProductJpa product = new ProductJpa();
-            product.brand("Brand of product " + i);
-            product.title("Title of product " + i);
-            product.price(new Random().nextInt(100000) + 5000);
+            product.setBrand("Brand of product " + i);
+            product.setTitle("Title of product " + i);
+            product.setPrice(new Random().nextInt(100000) + 5000);
             mongoTemplate.save(product);
         }
     }
