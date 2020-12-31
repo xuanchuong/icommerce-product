@@ -8,7 +8,6 @@ import com.icommerce.product.domain.event.UserActivitiesHistoricalEventPublisher
 import com.icommerce.product.domain.repository.CartRepository;
 import lombok.AllArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -28,7 +27,7 @@ public class CartService {
         } finally {
             UserActivitiesHistoricalEvent event = UserActivitiesHistoricalEvent.builder()
                     .actionId(ActionId.ADD_TO_CART.name())
-                    .actionDescription(String.format("User adding to cart product id %s and %s units", user, productId, quantity))
+                    .actionDescription(user + String.format(" adding to cart product id %s and %s units", productId, quantity))
                     .actionDate(LocalDateTime.now())
                     .userId(user).build();
             userActivitiesHistoricalEventPublisher.publish(event);

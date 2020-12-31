@@ -33,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final JHipsterProperties jHipsterProperties;
     private final SecurityProblemSupport problemSupport;
+    private final UserService userService = new UserServiceAdapter();
 
     public SecurityConfiguration(JHipsterProperties jHipsterProperties, SecurityProblemSupport problemSupport) {
         this.problemSupport = problemSupport;
@@ -42,11 +43,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public UserService userServiceAdapter() {
         return new UserServiceAdapter();
-    }
-
-    @Bean
-    public JwtGrantedAuthorityConverter jwtGrantedAuthorityConverter(UserService userService) {
-        return new JwtGrantedAuthorityConverter(userService);
     }
 
     @Override
@@ -78,16 +74,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/management/info").permitAll()
                 .antMatchers("/management/prometheus").permitAll()
                 .antMatchers("/management/**").hasAuthority(Role.ADMIN)
-        .and()
-            .oauth2ResourceServer()
+                .and()
+                .oauth2ResourceServer()
                 .jwt()
+                .jwtAuthenticationConverter(authenticationConverter(userService))
                 .and()
             .and()
                 .oauth2Client();
     }
 
-    @Bean
-    Converter<Jwt, AbstractAuthenticationToken> authenticationConverter(UserService userService) {
+    private Converter<Jwt, AbstractAuthenticationToken> authenticationConverter(UserService userService) {
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new JwtGrantedAuthorityConverter(userService));
         return jwtAuthenticationConverter;
