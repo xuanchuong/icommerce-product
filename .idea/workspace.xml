@@ -23,27 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d9869a4-19f0-4bfd-9c02-9cf5627e98ec" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_carrotsearch_hppc_0_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_hppc_2_10_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_tngtech_archunit_archunit_0_14_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_tngtech_archunit_archunit_junit5_api_0_14_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_tngtech_archunit_archunit_junit5_engine_0_14_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_tngtech_archunit_archunit_junit5_engine_api_0_14_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_cache_cache_api_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_compress_1_19.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_attoparser_attoparser_2_0_5_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_configuration_processor_2_2_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_loader_tools_2_2_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_mail_2_2_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_2_2_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_extras_thymeleaf_extras_java8time_3_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_3_0_11_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring5_3_0_11_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_unbescape_unbescape_1_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,6 +63,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="LombokPluginIS_ANNOTATION_PROCESSING_CHECK_Enabled" value="true" />
+    <property name="LombokPluginIS_LOMBOK_VERSION_CHECK_Enabled" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -95,21 +77,21 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../my-iCommerce-example-master" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.253882" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="project.structure.side.proportion" value="0.30878186" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.icommerce.product.data.jpa.adapter" />
       <recent name="com.icommerce.product.message.producer.adapter" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.icommerce.product.data.jpa.entity" />
@@ -222,6 +204,7 @@
       <workItem from="1607301213569" duration="34755000" />
       <workItem from="1607340176824" duration="2287000" />
       <workItem from="1614590835593" duration="393000" />
+      <workItem from="1614593012546" duration="689000" />
     </task>
     <task id="LOCAL-00001" summary="[show-list-product] create application layer + refactor code">
       <created>1607303128177</created>
@@ -267,104 +250,6 @@
     <MESSAGE value="[show-list-product] move message producer to correct domain" />
     <MESSAGE value="[show-list-product] refactor application module" />
     <option name="LAST_COMMIT_MESSAGE" value="[show-list-product] refactor application module" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="760" y="274" key="#Project_Structure" timestamp="1607308888442">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="760" y="274" key="#Project_Structure/0.0.2560.1400@0.0.2560.1400" timestamp="1607308888442" />
-    <state x="1085" y="406" key="#com.intellij.ide.util.MemberChooser" timestamp="1607328159075">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1085" y="406" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1607328159075" />
-    <state x="984" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607338346249">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="984" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607338346249" />
-    <state x="1010" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607323504920">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1010" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607323504920" />
-    <state x="380" y="402" width="1563" height="595" key="#xdebugger.evaluate" timestamp="1607335796667">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="380" y="402" width="1563" height="595" key="#xdebugger.evaluate/0.0.2560.1400@0.0.2560.1400" timestamp="1607335796667" />
-    <state x="1060" y="454" key="FileChooserDialogImpl" timestamp="1607328728374">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1060" y="454" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1607328728374" />
-    <state width="2517" height="366" key="GridCell.Tab.0.bottom" timestamp="1607392506127">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="366" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1607392506127" />
-    <state width="2517" height="366" key="GridCell.Tab.0.center" timestamp="1607392506127">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="366" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1607392506127" />
-    <state width="2517" height="366" key="GridCell.Tab.0.left" timestamp="1607392506127">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="366" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1607392506127" />
-    <state width="2517" height="366" key="GridCell.Tab.0.right" timestamp="1607392506127">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="366" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1607392506127" />
-    <state width="2517" height="366" key="GridCell.Tab.1.bottom" timestamp="1607392506127">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="366" key="GridCell.Tab.1.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1607392506127" />
-    <state width="2517" height="366" key="GridCell.Tab.1.center" timestamp="1607392506127">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="366" key="GridCell.Tab.1.center/0.0.2560.1400@0.0.2560.1400" timestamp="1607392506127" />
-    <state width="2517" height="366" key="GridCell.Tab.1.left" timestamp="1607392506127">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="366" key="GridCell.Tab.1.left/0.0.2560.1400@0.0.2560.1400" timestamp="1607392506127" />
-    <state width="2517" height="366" key="GridCell.Tab.1.right" timestamp="1607392506127">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="366" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1607392506127" />
-    <state width="2517" height="419" key="GridCell.Tab.2.bottom" timestamp="1607339694886">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="419" key="GridCell.Tab.2.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1607339694886" />
-    <state width="2517" height="419" key="GridCell.Tab.2.center" timestamp="1607339694886">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="419" key="GridCell.Tab.2.center/0.0.2560.1400@0.0.2560.1400" timestamp="1607339694886" />
-    <state width="2517" height="419" key="GridCell.Tab.2.left" timestamp="1607339694886">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="419" key="GridCell.Tab.2.left/0.0.2560.1400@0.0.2560.1400" timestamp="1607339694886" />
-    <state width="2517" height="419" key="GridCell.Tab.2.right" timestamp="1607339694886">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="419" key="GridCell.Tab.2.right/0.0.2560.1400@0.0.2560.1400" timestamp="1607339694886" />
-    <state x="905" y="402" key="RollbackChangesDialog" timestamp="1607321734980">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="905" y="402" key="RollbackChangesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607321734980" />
-    <state x="781" y="344" key="SettingsEditor" timestamp="1607308878557">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="781" y="344" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1607308878557" />
-    <state x="997" y="521" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1607317553749">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="997" y="521" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1607317553749" />
-    <state x="986" y="433" width="786" height="624" key="find.popup" timestamp="1607342517685">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="986" y="433" width="786" height="624" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1607342517685" />
-    <state x="917" y="360" key="new project wizard" timestamp="1607322525051">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="917" y="360" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1607322525051" />
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1607337940037">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1607337940037" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
