@@ -10,6 +10,7 @@ import config.TestSecurityConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.actuate.metrics.AutoConfigureMetrics;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -29,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = {ProductApp.class, TestSecurityConfiguration.class})
 @AutoConfigureMockMvc
 @WithMockUser
+@AutoConfigureMetrics
 public class OrderResourceIT {
 
     private static final String DEFAULT_PAYMENT_TYPE = "CASH";
